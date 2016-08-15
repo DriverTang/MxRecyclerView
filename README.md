@@ -54,11 +54,11 @@ compile 'com.marst.mxrecyclerview:mxrecyclerview:1.0.0'
 </code></pre>
 刷新失败时：
 <pre><code>
-        recyclerView.需调用setRefreshError();
+        recyclerView.setRefreshError();
 </code></pre>
 刷新成功但是没有数据：
 <pre><code>
-        recyclerView.需调用setRefreshEmpty();
+        recyclerView.setRefreshEmpty();
 </code></pre>
 
 
@@ -90,7 +90,7 @@ MxRecyclerView可以添加复数个header，代码如下
 
 有两种方式进行添加：
 
-"### 一、在布局中添加属性，引用布局id"
+### 一、在布局中添加属性，引用布局id
     <pre><code>
          <com.marst.mxrecyclerview.MxRecyclerView
                android:id="@+id/recycler_view"
@@ -101,7 +101,7 @@ MxRecyclerView可以添加复数个header，代码如下
     </code></pre>
 
 
-"### 二、在代码中进行设置"
+### 二、在代码中进行设置
 
    <pre><code>
          //设置空数据View
