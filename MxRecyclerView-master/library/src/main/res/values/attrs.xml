@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MxRecyclerView">
+        <attr name="layout_empty" format="reference" />
+        <attr name="layout_error" format="reference" />
+    </declare-styleable>
+</resources>

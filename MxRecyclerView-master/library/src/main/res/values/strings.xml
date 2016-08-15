@@ -1,0 +1,11 @@
+<resources>
+    <string name="refresh_normal">pull to refresh</string>
+    <string name="refresh_release">release to start refresh</string>
+    <string name="refreshing">refreshing...</string>
+    <string name="refresh_complete">refresh complete</string>
+    <string name="refresh_error">refresh failure</string>
+    <string name="loading">loading...</string>
+    <string name="loading_nomore">no more to be loaded</string>
+    <string name="loading_error">load data failure</string>
+    <string name="listview_header_last_time">last update：</string>
+</resources>
