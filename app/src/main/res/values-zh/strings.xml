@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MxRecyclerView</string>
+    <string name="linear_layout">线性布局</string>
+    <string name="grid_layout">网格布局</string>
+    <string name="staggered_grid_layout">瀑布流</string>
+    <string name="swip_refresh_layout">MxRecyclerView+SwipRefreshLayout</string>
+    <string name="item_click">列表项点击</string>
+    <string name="header">添加Header</string>
+    <string name="divider">分割线</string>
+
+    <string name="empty">什么都没有哦</string>
+    <string name="error">加载失败，请下拉重新加载</string>
+</resources>
