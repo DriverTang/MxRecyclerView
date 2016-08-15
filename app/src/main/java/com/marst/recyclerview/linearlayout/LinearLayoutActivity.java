@@ -90,7 +90,7 @@ public class LinearLayoutActivity extends AppCompatActivity {
                         for (int i = 0; i < 10; i++) {
                             dataList.add("这是第" + dataList.size() + "条数据");
                         }
-                        recyclerView.setRefreshComplete();
+                        recyclerView.setLoadMoreComplete();
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);

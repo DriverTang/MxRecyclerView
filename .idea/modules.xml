@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MxRecyclerView.iml" filepath="$PROJECT_DIR$/MxRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/MxRecyclerView-master.iml" filepath="$PROJECT_DIR$/MxRecyclerView-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mxrecyclerview/library.iml" filepath="$PROJECT_DIR$/mxrecyclerview/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mxrecyclerview/mxrecyclerview.iml" filepath="$PROJECT_DIR$/mxrecyclerview/mxrecyclerview.iml" />
     </modules>
   </component>
 </project>

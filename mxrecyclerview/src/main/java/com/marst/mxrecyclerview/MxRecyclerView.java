@@ -789,7 +789,7 @@ public class MxRecyclerView extends RecyclerView {
     }
 
     /**
-     * 列表项长按事件监听接口
+     * 列表项点击事件
      */
     public interface OnItemLongClickListener {
         void onItemLongClick(View childView, int position);

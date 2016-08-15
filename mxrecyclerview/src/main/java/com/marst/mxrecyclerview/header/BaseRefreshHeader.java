@@ -26,6 +26,11 @@ public interface BaseRefreshHeader {
      */
     void onMove(float delta);
 
+    /**
+     * 释放刷新
+     *
+     * @return
+     */
     boolean releaseAction();
 
     /**
