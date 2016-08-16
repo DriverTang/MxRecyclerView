@@ -609,7 +609,7 @@ public class MxRecyclerView extends RecyclerView {
 
         @Override
         public int getItemViewType(int position) {
-            int adapterPosition = position - (getItemCount() + getRefreshHeaderCount());
+            int adapterPosition = position - (getHeaderCount() + getRefreshHeaderCount());
             if (isRefreshHeader(position)) {
                 return TYPE_REFRESH_HEADER;
             }

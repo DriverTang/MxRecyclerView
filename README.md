@@ -210,9 +210,10 @@ MxRecyclerView可以添加复数个header，代码如下
 </code></pre>
 
 
- ##  最后声明，本库是在XRecyclerView的基础上完成的
+## 最后声明，本库是在XRecyclerView的基础上完成的
 
- ### 附上XRecyclerView的GitHub地址：<a href="https://github.com/jianghejie/XRecyclerView">https://github.com/jianghejie/XRecyclerView</a>
+### 附上XRecyclerView的GitHub地址：
+<a href="https://github.com/jianghejie/XRecyclerView">https://github.com/jianghejie/XRecyclerView</a>
 
 
 
