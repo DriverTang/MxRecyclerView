@@ -5,7 +5,7 @@
 ## 引入
 <br />
 
-compile 'com.marst.mxrecyclerview:mxrecyclerview:1.0.0'
+compile 'com.marst:mxrecyclerview:1.0.0'
 
 ## 使用
 <br/>
@@ -91,28 +91,29 @@ MxRecyclerView可以添加复数个header，代码如下
 有两种方式进行添加：
 
 ### 一、在布局中添加属性，引用布局id
-    <pre><code>
-         <com.marst.mxrecyclerview.MxRecyclerView
+
+<pre><code>
+        &lt;com.marst.mxrecyclerview.MxRecyclerView
                android:id="@+id/recycler_view"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                app:layout_empty="@layout/layout_empty"
                app:layout_error="@layout/layout_error" />
-    </code></pre>
+</code></pre>
 
 
 ### 二、在代码中进行设置
 
-   <pre><code>
+<pre><code>
          //设置空数据View
          recyclerView.setEmptyView(mEmptyView);
          //设置加载失败View
          recyclerView.setErrorView(mErrorView);
-    </code></pre>
+</code></pre>
 
 ## 添加分割线
     可以设置分割线颜色，粗细，代码如下
-  <pre><code>
+<pre><code>
         //创建分割线对象，设置方向
         DividerItemDecoration decoration = new DividerItemDecoration(this,LinearLayoutManager.VERTICAL);
         //设置分割线颜色
@@ -121,14 +122,15 @@ MxRecyclerView可以添加复数个header，代码如下
         decoration.setDeviderWidth(10);
         //RecyclerView添加分割线
         recyclerView.addItemDecoration(decoration);
-  </code></pre>
+</code></pre>
 
 ## 自定义refresHeader和Footer
 
    如果要自定义下拉刷新和上拉加载的View，需要实现对应的接口
 
    下拉刷新需要实现 BaseLoadingFooter 接口
-  <pre><code>
+
+<pre><code>
         public interface BaseRefreshHeader {
 
             int STATE_NORMAL = 0;
@@ -176,11 +178,11 @@ MxRecyclerView可以添加复数个header，代码如下
              */
             void setState(int stateCode);
         }
-  </code></pre>
+</code></pre>
 
    上拉加载需要实现 BaseRefreshHeader 接口：
 
- <pre><code>
+<pre><code>
      public interface BaseLoadingFooter {
          //正在加载
          int STATE_LOADING = 0;
@@ -203,12 +205,13 @@ MxRecyclerView可以添加复数个header，代码如下
           *
           * @param state
           */
-         void setState(int state);
+          void setState(int state);
      }
- </code></pre>
+</code></pre>
 
 
- ## 最后声明，本库是在XRecyclerView的基础上完成的，
+ ##  最后声明，本库是在XRecyclerView的基础上完成的
+
  ### 附上XRecyclerView的GitHub地址：<a href="https://github.com/jianghejie/XRecyclerView">https://github.com/jianghejie/XRecyclerView</a>
 
 

@@ -34,7 +34,7 @@ def siteUrl = 'https://github.com/DriverTang/MxRecyclerView'   // 项目的主�
 def gitUrl = 'https://github.com/DriverTang/MxRecyclerView.git'   // Git仓库的url
 
 // 唯一包名，比如compile 'com.yanzhenjie:andserver:1.0.1'中的com.yanzhenjie就是这里配置的。
-group = "com.marst.mxrecyclerview"
+group = "com.marst"
 install {
     repositories.mavenInstaller {
         // 生成pom.xml和参数
