@@ -27,8 +27,8 @@ public class ItemClickActivity extends AppCompatActivity {
 
         initData();
         recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setPullRefreshEnable(false);
-        recyclerView.setLoadingMoreEnable(false);
+        recyclerView.setPullRefreshEnabled(false);
+        recyclerView.setLoadingMoreEnabled(false);
         //设置列表项点击事件监听
         recyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
             @Override

@@ -32,8 +32,8 @@ public class StaggeredGridActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         //刷新和加载更多默认为true
-        recyclerView.setPullRefreshEnable(true);
-        recyclerView.setLoadingMoreEnable(true);
+        recyclerView.setPullRefreshEnabled(true);
+        recyclerView.setLoadingMoreEnabled(true);
 
         recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override

@@ -27,8 +27,8 @@ public class DividerActivity extends AppCompatActivity {
 
         initData();
         recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setPullRefreshEnable(false);
-        recyclerView.setLoadingMoreEnable(false);
+        recyclerView.setPullRefreshEnabled(false);
+        recyclerView.setLoadingMoreEnabled(false);
 
         adapter = new RecyclerAdapter(this, dataList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

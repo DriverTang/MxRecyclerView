@@ -33,8 +33,8 @@ public class GridLayoutActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         //刷新和加载更多默认为true
-        recyclerView.setPullRefreshEnable(true);
-        recyclerView.setLoadingMoreEnable(true);
+        recyclerView.setPullRefreshEnabled(true);
+        recyclerView.setLoadingMoreEnabled(true);
 
         recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override

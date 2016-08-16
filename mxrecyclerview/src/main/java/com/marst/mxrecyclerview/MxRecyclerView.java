@@ -51,8 +51,8 @@ public class MxRecyclerView extends RecyclerView {
     private BaseRefreshHeader mRefreshHeader;
     private BaseLoadingFooter mFootView;
 
-    private boolean pullRefreshEnable = true;
-    private boolean loadingMoreEnable = true;
+    private boolean pullRefreshEnabled = true;
+    private boolean loadingMoreEnabled = true;
 
     private boolean isLoadingData = false;
     private boolean isLoadingNoMore = false;
@@ -107,7 +107,7 @@ public class MxRecyclerView extends RecyclerView {
         //去掉虚影
         setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        if (pullRefreshEnable) {
+        if (pullRefreshEnabled) {
             mRefreshHeader = new ArrowRefreshHeader(mContext);
         }
         mFootView = new LoadingMoreFooter(mContext);
@@ -157,8 +157,8 @@ public class MxRecyclerView extends RecyclerView {
      *
      * @param enable true or false
      */
-    public void setPullRefreshEnable(boolean enable) {
-        this.pullRefreshEnable = enable;
+    public void setPullRefreshEnabled(boolean enable) {
+        this.pullRefreshEnabled = enable;
     }
 
     /**
@@ -166,8 +166,8 @@ public class MxRecyclerView extends RecyclerView {
      *
      * @param enable true or false
      */
-    public void setLoadingMoreEnable(boolean enable) {
-        this.loadingMoreEnable = enable;
+    public void setLoadingMoreEnabled(boolean enable) {
+        this.loadingMoreEnabled = enable;
     }
 
     /**
@@ -231,7 +231,7 @@ public class MxRecyclerView extends RecyclerView {
      * @param refreshing 是否刷新
      */
     public void setRefreshing(boolean refreshing) {
-        if (refreshing && pullRefreshEnable && mOnLoadingListener != null) {
+        if (refreshing && pullRefreshEnabled && mOnLoadingListener != null) {
             mRefreshHeader.setState(BaseRefreshHeader.STATE_REFRESHING);
             mRefreshHeader.onMove(mRefreshHeader.getHeaderView().getMeasuredHeight());
             mOnLoadingListener.onRefresh();
@@ -254,7 +254,7 @@ public class MxRecyclerView extends RecyclerView {
         this.isLoadingNoMore = true;
         this.dataState = DATA_EMPTY;
 
-        if (pullRefreshEnable) {
+        if (pullRefreshEnabled) {
             mRefreshHeader.setState(BaseRefreshHeader.STATE_COMPLETE);
         }
         mWrapAdapter.adapter.notifyDataSetChanged();
@@ -267,7 +267,7 @@ public class MxRecyclerView extends RecyclerView {
         this.isLoadingData = false;
         this.dataState = DATA_ERROR;
 
-        if (pullRefreshEnable) {
+        if (pullRefreshEnabled) {
             mRefreshHeader.setState(BaseRefreshHeader.STATE_ERROE);
         }
         mWrapAdapter.adapter.notifyDataSetChanged();
@@ -325,7 +325,7 @@ public class MxRecyclerView extends RecyclerView {
      * @return
      */
     public int getRefreshHeaderCount() {
-        return pullRefreshEnable ? 1 : 0;
+        return pullRefreshEnabled ? 1 : 0;
     }
 
     /**
@@ -334,7 +334,7 @@ public class MxRecyclerView extends RecyclerView {
      * @return
      */
     public int getFooterCount() {
-        return loadingMoreEnable ? 1 : 0;
+        return loadingMoreEnabled ? 1 : 0;
     }
 
     /**
@@ -451,7 +451,7 @@ public class MxRecyclerView extends RecyclerView {
             case MotionEvent.ACTION_MOVE:
                 final float deltaY = e.getRawY() - mLastY;
                 mLastY = e.getRawY();
-                if (isOnTop() && pullRefreshEnable) {
+                if (isOnTop() && pullRefreshEnabled) {
                     mRefreshHeader.onMove(deltaY / DRAG_RATE);
                     if (mRefreshHeader.getHeaderView().getMeasuredHeight() > 0 && mRefreshHeader.getState() < BaseRefreshHeader.STATE_REFRESHING) {
                         return false;
@@ -460,7 +460,7 @@ public class MxRecyclerView extends RecyclerView {
                 break;
             default:
                 mLastY = -1;
-                if (isOnTop() && pullRefreshEnable) {
+                if (isOnTop() && pullRefreshEnabled) {
                     if (mRefreshHeader.releaseAction()) {
                         if (mOnLoadingListener != null) {
                             mOnLoadingListener.onRefresh();
@@ -479,7 +479,7 @@ public class MxRecyclerView extends RecyclerView {
         if (state == RecyclerView.SCROLL_STATE_IDLE
                 && mOnLoadingListener != null
                 && !isLoadingData
-                && loadingMoreEnable) {
+                && loadingMoreEnabled) {
             LayoutManager layoutManager = getLayoutManager();
             int lastVisibleItemPosition;
             if (layoutManager instanceof GridLayoutManager) {
@@ -554,7 +554,7 @@ public class MxRecyclerView extends RecyclerView {
          * @return
          */
         public boolean isRefreshHeader(int position) {
-            return pullRefreshEnable && position == 0;
+            return pullRefreshEnabled && position == 0;
         }
 
         /**
@@ -574,7 +574,7 @@ public class MxRecyclerView extends RecyclerView {
          * @return
          */
         public boolean isFooter(int position) {
-            if (loadingMoreEnable && adapter.getItemCount() > 0) {
+            if (loadingMoreEnabled && adapter.getItemCount() > 0) {
                 return position == getItemCount() - 1;
             } else {
                 return false;

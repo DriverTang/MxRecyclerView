@@ -36,7 +36,7 @@ public class SwipRefreshActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //如果不使用自身的下拉刷新请设置false
-        recyclerView.setPullRefreshEnable(false);
+        recyclerView.setPullRefreshEnabled(false);
         recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
             public void onRefresh() {

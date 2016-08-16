@@ -39,8 +39,8 @@ public class LinearLayoutActivity extends AppCompatActivity {
         decoration.setDeviderWidth(10);
         decoration.setDividerColor(Color.RED);
         recyclerView.addItemDecoration(decoration);
-        recyclerView.setPullRefreshEnable(true);
-        recyclerView.setLoadingMoreEnable(true);
+        recyclerView.setPullRefreshEnabled(true);
+        recyclerView.setLoadingMoreEnabled(true);
 
         //如果布局没有设置layout_empty和layout_error两个属性则需要写下面注释的代码
      /*   ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
