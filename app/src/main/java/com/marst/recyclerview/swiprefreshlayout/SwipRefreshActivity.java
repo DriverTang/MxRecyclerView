@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SwipRefreshActivity extends AppCompatActivity {
-    private MxRecyclerView recyclerView;
-    private SwipeRefreshLayout refreshLayout;
+    private MxRecyclerView mRecyclerView;
+    private SwipeRefreshLayout mRefreshLayout;
 
 
     private List<String> dataList = new ArrayList<>();
@@ -29,18 +29,18 @@ public class SwipRefreshActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swip_refresh);
 
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
-        refreshLayout.setProgressViewOffset(true, 20, 120);
+        mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        mRefreshLayout.setProgressViewOffset(true, 20, 120);
 
-        recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //如果不使用自身的下拉刷新请设置false
-        recyclerView.setPullRefreshEnabled(false);
-        recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+        mRecyclerView.setPullRefreshEnabled(false);
+        mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
             public void onRefresh() {
-
+                //此处为空
             }
 
             @Override
@@ -50,7 +50,7 @@ public class SwipRefreshActivity extends AppCompatActivity {
                         for (int i = 0; i < 10; i++) {
                             dataList.add("这是第" + dataList.size() + "条数据");
                         }
-                        recyclerView.setLoadMoreComplete();
+                        mRecyclerView.setLoadMoreComplete();
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);
@@ -58,7 +58,7 @@ public class SwipRefreshActivity extends AppCompatActivity {
         });
 
         //使用SwipRefreshLayout的下拉刷新监听
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refreshTime++;
@@ -69,7 +69,7 @@ public class SwipRefreshActivity extends AppCompatActivity {
                         for (int i = 0; i < 20; i++) {
                             dataList.add("刷新第" + refreshTime + "次，" + "第" + i + "条数据");
                         }
-                        refreshLayout.setRefreshing(false);
+                        mRefreshLayout.setRefreshing(false);
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);
@@ -79,10 +79,10 @@ public class SwipRefreshActivity extends AppCompatActivity {
         initData();
         adapter = new RecyclerAdapter(this, dataList);
 
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
 
         //注意
-        refreshLayout.setRefreshing(false);
+        mRefreshLayout.setRefreshing(false);
     }
 
     private void initData() {

@@ -75,23 +75,12 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         final int right = parent.getMeasuredWidth() - parent.getPaddingRight();
         final int childSize = parent.getChildCount();
 
-        int refreshHeaderCount = 0;
-        int headerCount = 0;
-        int footerCount = 0;
-        if (parent instanceof MxRecyclerView) {
-            refreshHeaderCount = ((MxRecyclerView) parent).getRefreshHeaderCount();
-            headerCount = ((MxRecyclerView) parent).getHeaderCount();
-            footerCount = ((MxRecyclerView) parent).getFooterCount();
-        }
-
-        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
-        int position = -1;
-        if (layoutManager instanceof LinearLayoutManager) {
-            position = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
-        }
+        int firstPosition = getFirstPosition(parent);
+        int headerCount = getHeaderCount(parent);
+        int footerCount = getFooterCount(parent);
 
         for (int i = 0; i < childSize - footerCount; i++) {
-            if (position >= 0 && position + i < refreshHeaderCount + headerCount) {
+            if (firstPosition >= 0 && firstPosition + i < headerCount) {
                 continue;
             }
             final View child = parent.getChildAt(i);
@@ -113,23 +102,12 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         final int bottom = parent.getMeasuredHeight() - parent.getPaddingBottom();
         final int childSize = parent.getChildCount();
 
-        int refreshHeaderCount = 0;
-        int headerCount = 0;
-        int footerCount = 0;
-        if (parent instanceof MxRecyclerView) {
-            refreshHeaderCount = ((MxRecyclerView) parent).getRefreshHeaderCount();
-            headerCount = ((MxRecyclerView) parent).getHeaderCount();
-            footerCount = ((MxRecyclerView) parent).getFooterCount();
-        }
-
-        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
-        int position = -1;
-        if (layoutManager instanceof LinearLayoutManager) {
-            position = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
-        }
+        int firstPosition = getFirstPosition(parent);
+        int headerCount = getHeaderCount(parent);
+        int footerCount = getFooterCount(parent);
 
         for (int i = 0; i < childSize - footerCount; i++) {
-            if (position >= 0 && position + i < refreshHeaderCount + headerCount) {
+            if (firstPosition >= 0 && firstPosition + i < headerCount) {
                 continue;
             }
             final View child = parent.getChildAt(i);
@@ -156,6 +134,32 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
      */
     public void setDeviderWidth(int size) {
         this.mItemSize = size;
+    }
+
+    private int getFirstPosition(RecyclerView recyclerView) {
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            return ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        }
+
+        return -1;
+    }
+
+    private int getHeaderCount(RecyclerView recyclerView) {
+        if (recyclerView instanceof MxRecyclerView) {
+            MxRecyclerView mxRecyclerView = (MxRecyclerView) recyclerView;
+            return mxRecyclerView.getRefreshHeaderCount() + mxRecyclerView.getHeaderCount();
+        }
+
+        return 0;
+    }
+
+    private int getFooterCount(RecyclerView recyclerView) {
+        if (recyclerView instanceof MxRecyclerView) {
+            return ((MxRecyclerView) recyclerView).getFooterCount();
+        }
+
+        return 0;
     }
 
     @Override

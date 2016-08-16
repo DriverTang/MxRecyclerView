@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderActivity extends AppCompatActivity {
-    private MxRecyclerView recyclerView;
+    private MxRecyclerView mRecyclerView;
     private RecyclerAdapter adapter;
 
     int refreshTime = 0;
@@ -31,7 +31,7 @@ public class HeaderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_click);
 
         initData();
-        recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
 
         //添加Header
         TextView textView = new TextView(this);
@@ -40,7 +40,7 @@ public class HeaderActivity extends AppCompatActivity {
         textView.setText("This is a Header");
         textView.setGravity(Gravity.CENTER);
         textView.setTextColor(Color.WHITE);
-        recyclerView.addHeader(textView);
+        mRecyclerView.addHeader(textView);
 
         TextView textView1 = new TextView(this);
         textView1.setBackgroundColor(Color.BLUE);
@@ -48,9 +48,9 @@ public class HeaderActivity extends AppCompatActivity {
         textView1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 360));
         textView1.setText("This is a Header");
         textView1.setTextColor(Color.WHITE);
-        recyclerView.addHeader(textView1);
+        mRecyclerView.addHeader(textView1);
 
-        recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+        mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
             public void onRefresh() {
                 handler.postDelayed(new Runnable() {
@@ -62,7 +62,7 @@ public class HeaderActivity extends AppCompatActivity {
                         for (int i = 0; i < 15; i++) {
                             dataList.add("刷新第" + refreshTime + "次，" + "第" + i + "条数据");
                         }
-                        recyclerView.setRefreshComplete();
+                        mRecyclerView.setRefreshComplete();
                         adapter.notifyDataSetChanged();
 
                     }
@@ -77,7 +77,7 @@ public class HeaderActivity extends AppCompatActivity {
                         for (int i = 0; i < 10; i++) {
                             dataList.add("这是第" + dataList.size() + "条数据");
                         }
-                        recyclerView.setRefreshComplete();
+                        mRecyclerView.setRefreshComplete();
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);
@@ -85,9 +85,9 @@ public class HeaderActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerAdapter(this, dataList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setRefreshing(true);
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setRefreshing(true);
     }
 
     private void initData() {

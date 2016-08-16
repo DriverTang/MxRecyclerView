@@ -16,7 +16,7 @@ import java.util.List;
 
 public class LinearLayoutActivity extends AppCompatActivity {
 
-    private MxRecyclerView recyclerView;
+    private MxRecyclerView mRecyclerView;
     private RecyclerAdapter adapter;
 
 
@@ -33,14 +33,14 @@ public class LinearLayoutActivity extends AppCompatActivity {
 
         // initData();
 
-        recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration decoration = new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         decoration.setDeviderWidth(10);
         decoration.setDividerColor(Color.RED);
-        recyclerView.addItemDecoration(decoration);
-        recyclerView.setPullRefreshEnabled(true);
-        recyclerView.setLoadingMoreEnabled(true);
+        mRecyclerView.addItemDecoration(decoration);
+        mRecyclerView.setPullRefreshEnabled(true);
+        mRecyclerView.setLoadingMoreEnabled(true);
 
         //如果布局没有设置layout_empty和layout_error两个属性则需要写下面注释的代码
      /*   ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -49,16 +49,16 @@ public class LinearLayoutActivity extends AppCompatActivity {
         textView1.setText("什么都没有哦");
         textView1.setGravity(Gravity.CENTER);
         textView1.setLayoutParams(lp);
-        recyclerView.setEmptyView(textView1);
+        mRecyclerView.setEmptyView(textView1);
 
         //设置加载错误布局视图
         TextView textView2 = new TextView(this);
         textView2.setText("加载失败，请下拉重试");
         textView2.setGravity(Gravity.CENTER);
         textView2.setLayoutParams(lp);
-        recyclerView.setErrorView(textView2);*/
+        mRecyclerView.setErrorView(textView2);*/
 
-        recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+        mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
             public void onRefresh() {
                 handler.postDelayed(new Runnable() {
@@ -68,14 +68,14 @@ public class LinearLayoutActivity extends AppCompatActivity {
                         dataList.clear();
 
                         if (refreshTime == 1) {
-                            recyclerView.setRefreshError();
+                            mRecyclerView.setRefreshError();
                         } else if (refreshTime == 2) {
-                            recyclerView.setRefreshEmpty();
+                            mRecyclerView.setRefreshEmpty();
                         } else {
                             for (int i = 0; i < 20; i++) {
                                 dataList.add("刷新第" + refreshTime + "次，" + "第" + i + "条数据");
                             }
-                            recyclerView.setRefreshComplete();
+                            mRecyclerView.setRefreshComplete();
                             adapter.notifyDataSetChanged();
                         }
                     }
@@ -90,7 +90,7 @@ public class LinearLayoutActivity extends AppCompatActivity {
                         for (int i = 0; i < 10; i++) {
                             dataList.add("这是第" + dataList.size() + "条数据");
                         }
-                        recyclerView.setLoadMoreComplete();
+                        mRecyclerView.setLoadMoreComplete();
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);
@@ -98,7 +98,7 @@ public class LinearLayoutActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerAdapter(this, dataList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setRefreshing(true);
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setRefreshing(true);
     }
 }

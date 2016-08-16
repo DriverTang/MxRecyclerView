@@ -412,10 +412,11 @@ public class MxRecyclerView extends RecyclerView {
                 //adapter数据不为空
                 //position大于等于0
                 //childView不为footerView
+                int relPostion = position - (getRefreshHeaderCount() + getHeaderCount());
                 if (!isDataEmpty()
                         && view != mFootView.getFooterView()
-                        && position - (getRefreshHeaderCount() + getHeaderCount()) >= 0) {
-                    mOnItemClickListener.onItemClick(view, position - (getRefreshHeaderCount() + getHeaderCount()));
+                        && relPostion >= 0) {
+                    mOnItemClickListener.onItemClick(view, relPostion);
                 }
             }
             return true;
@@ -429,10 +430,11 @@ public class MxRecyclerView extends RecyclerView {
                 //adapter数据不为空
                 //position大于等于0
                 //childView不为footerView
+                int relPostion = position - (getRefreshHeaderCount() + getHeaderCount());
                 if (!isDataEmpty()
                         && view != mFootView.getFooterView()
-                        && position - (getRefreshHeaderCount() + getHeaderCount()) >= 0) {
-                    mOnItemLongClickListener.onItemLongClick(view, position - (getRefreshHeaderCount() + getHeaderCount()));
+                        && relPostion >= 0) {
+                    mOnItemLongClickListener.onItemLongClick(view, relPostion);
                 }
             }
         }

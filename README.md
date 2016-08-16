@@ -11,14 +11,14 @@ compile 'com.marst:mxrecyclerview:1.0.0'
 ## 添加列表项点击事件监听 ##
 <pre><code>
         //设置列表项点击事件监听
-        recyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
+        mRecyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
             @Override
             public void onItemClick(View childView, int position) {
 
             }
         });
         //设置列表项长按事件监听
-        recyclerView.setOnItemLongClickListener(new MxRecyclerView.OnItemLongClickListener() {
+        mRecyclerView.setOnItemLongClickListener(new MxRecyclerView.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View childView, int position) {
 
@@ -34,19 +34,19 @@ compile 'com.marst:mxrecyclerview:1.0.0'
 默认都是开启的，如果不需要此功能可以禁止
 <pre><code>
         //开启下拉刷新
-        recyclerView.setPullRefreshEnable(true);
+        mRecyclerView.setPullRefreshEnable(true);
         //禁止下拉刷新
-        recyclerView.setPullRefreshEnable(false);
+        mRecyclerView.setPullRefreshEnable(false);
         <br/>
         //开启加载更多
-        recyclerView.setLoadingMoreEnable(true);
+        mRecyclerView.setLoadingMoreEnable(true);
         //禁止加载更多
-        recyclerView.setLoadingMoreEnable(false);
+        mRecyclerView.setLoadingMoreEnable(false);
 </code></pre>
 
 你可以对MxRecyclerView的下拉和上拉事件进行监听，代码如下：
 <pre><code>
-        recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+        mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
                 @Override
                 public void onRefresh() {
 
@@ -63,15 +63,15 @@ compile 'com.marst:mxrecyclerview:1.0.0'
 
 刷新成功时：
 <pre><code>
-        recyclerView.setRefreshComplete();
+        mRecyclerView.setRefreshComplete();
 </code></pre>
 刷新失败时：
 <pre><code>
-        recyclerView.setRefreshError();
+        mRecyclerView.setRefreshError();
 </code></pre>
 刷新成功但是没有数据：
 <pre><code>
-        recyclerView.setRefreshEmpty();
+        mRecyclerView.setRefreshEmpty();
 </code></pre>
 
 
@@ -79,24 +79,64 @@ compile 'com.marst:mxrecyclerview:1.0.0'
 
 加载成功：
 <pre><code>
-        recyclerView.setLoadMoreComplete();
+        mRecyclerView.setLoadMoreComplete();
 </code></pre>
 加载失败：
 <pre><code>
-        recyclerView.setLoadMoreError();
+        mRecyclerView.setLoadMoreError();
 </code></pre>
 加载成功，但是没有更多数据了：
 <pre><code>
-        recyclerView.setLoadingNoMore(true);
+        mRecyclerView.setLoadingNoMore(true);
+</code></pre>
+
+### 使用SwipRefreshLayout ###
+
+布局文件如下：
+<pre><code>
+       &lt;android.support.v4.widget.SwipeRefreshLayout
+               android:id="@+id/refresh_layout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               &lt;com.marst.mxrecyclerview.MxRecyclerView
+                   android:id="@+id/recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" />
+           &lt;/android.support.v4.widget.SwipeRefreshLayout>
+</code></pre>
+
+由于使用了SwipRefreshLayout，所以要禁止MxRecyclerView自身的下拉刷新
+<pre><code>
+         mRecyclerView.setRefreshEnabled(false);
+         mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+                     @Override
+                     public void onRefresh() {
+                            //此处为空
+                     }
+
+                     @Override
+                     public void onLoadMore() {
+                            //加载更多
+                     }
+                 });
+
+         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        //记得调用对应的方法通知刷新完成
+                        mRecyclerView.setRefreshComplete();
+                    }
+                });
 </code></pre>
 
 ## 添加Header ##
 
 MxRecyclerView可以添加复数个header，代码如下
 <pre><code>
-         recyclerView.addHeader(headerView1);
-         recyclerView.addHeader(headerView2);
-         recyclerView.addHeader(headerView3);
+         mRecyclerView.addHeader(headerView1);
+         mRecyclerView.addHeader(headerView2);
+         mRecyclerView.addHeader(headerView3);
 </code></pre>
 
 ## 设置空数据 和 加载失败 布局 ##
@@ -117,9 +157,9 @@ MxRecyclerView可以添加复数个header，代码如下
 
 <pre><code>
          //设置空数据View
-         recyclerView.setEmptyView(mEmptyView);
+         mRecyclerView.setEmptyView(mEmptyView);
          //设置加载失败View
-         recyclerView.setErrorView(mErrorView);
+         mRecyclerView.setErrorView(mErrorView);
 </code></pre>
 
 ## 添加分割线 ##
@@ -132,7 +172,7 @@ MxRecyclerView可以添加复数个header，代码如下
         //设置分割线粗细，单位是dp
         decoration.setDeviderWidth(10);
         //RecyclerView添加分割线
-        recyclerView.addItemDecoration(decoration);
+        mRecyclerView.addItemDecoration(decoration);
 </code></pre>
 
 ## 自定义refresHeader和Footer ##
@@ -141,12 +181,12 @@ MxRecyclerView可以添加复数个header，代码如下
 
 下拉刷新需要实现 BaseLoadingFooter 接口，
 <pre><code>
-        recyclerView.setFooterView(BaseLoadingFooter footer);
+        mRecyclerView.setFooterView(BaseLoadingFooter footer);
 </code></pre>
 
 上拉加载需要实现 BaseRefreshHeader 接口。
 <pre><code>
-        recyclerView.setRefreshHeader(BaseRefreshHeader refreshHeader);
+        mRecyclerView.setRefreshHeader(BaseRefreshHeader refreshHeader);
 </code></pre>
 
 <br/>

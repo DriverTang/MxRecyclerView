@@ -18,10 +18,10 @@ import com.marst.recyclerview.swiprefreshlayout.SwipRefreshActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView linearLayoutBtn;
-    private TextView GridLayoutBtn;
-    private TextView StaggeredLayoutBtn;
-    private TextView SwipRefreshBtn;
-    private TextView ItemClickBtn;
+    private TextView gridLayoutBtn;
+    private TextView staggeredLayoutBtn;
+    private TextView swipRefreshBtn;
+    private TextView itemClickBtn;
     private TextView headerBtn;
     private TextView dividerBtn;
 
@@ -31,18 +31,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         linearLayoutBtn = (TextView) findViewById(R.id.linear_btn);
-        GridLayoutBtn = (TextView) findViewById(R.id.grid_btn);
-        StaggeredLayoutBtn = (TextView) findViewById(R.id.staggered_btn);
-        SwipRefreshBtn = (TextView) findViewById(R.id.swip_refresh_btn);
-        ItemClickBtn = (TextView)findViewById(R.id.item_click_btn);
+        gridLayoutBtn = (TextView) findViewById(R.id.grid_btn);
+        staggeredLayoutBtn = (TextView) findViewById(R.id.staggered_btn);
+        swipRefreshBtn = (TextView) findViewById(R.id.swip_refresh_btn);
+        itemClickBtn = (TextView)findViewById(R.id.item_click_btn);
         headerBtn = (TextView)findViewById(R.id.header_btn);
         dividerBtn = (TextView)findViewById(R.id.divider_btn);
 
         linearLayoutBtn.setOnClickListener(this);
-        GridLayoutBtn.setOnClickListener(this);
-        StaggeredLayoutBtn.setOnClickListener(this);
-        SwipRefreshBtn.setOnClickListener(this);
-        ItemClickBtn.setOnClickListener(this);
+        gridLayoutBtn.setOnClickListener(this);
+        staggeredLayoutBtn.setOnClickListener(this);
+        swipRefreshBtn.setOnClickListener(this);
+        itemClickBtn.setOnClickListener(this);
         headerBtn.setOnClickListener(this);
         dividerBtn.setOnClickListener(this);
     }

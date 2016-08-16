@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DividerActivity extends AppCompatActivity {
-    private MxRecyclerView recyclerView;
+    private MxRecyclerView mRecyclerView;
     private RecyclerAdapter adapter;
 
 
@@ -26,23 +26,23 @@ public class DividerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_click);
 
         initData();
-        recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setPullRefreshEnabled(false);
-        recyclerView.setLoadingMoreEnabled(false);
+        mRecyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setPullRefreshEnabled(false);
+        mRecyclerView.setLoadingMoreEnabled(false);
 
         adapter = new RecyclerAdapter(this, dataList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //创建分割线对象，设置方向
         DividerItemDecoration decoration = new DividerItemDecoration(this,LinearLayoutManager.VERTICAL);
         //设置分割线颜色
         decoration.setDividerColor(Color.RED);
         //设置分割线粗细，单位是dp
-        decoration.setDeviderWidth(10);
+        decoration.setDeviderWidth(1);
         //RecyclerView添加分割线
-        recyclerView.addItemDecoration(decoration);
+        mRecyclerView.addItemDecoration(decoration);
 
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
     }
 
     private void initData() {

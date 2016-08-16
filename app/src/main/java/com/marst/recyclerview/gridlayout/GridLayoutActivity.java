@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GridLayoutActivity extends AppCompatActivity {
 
-    private MxRecyclerView recyclerView;
+    private MxRecyclerView mRecyclerView;
 
     private RecyclerAdapter adapter;
 
@@ -28,15 +28,15 @@ public class GridLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_layout);
 
-        recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         //刷新和加载更多默认为true
-        recyclerView.setPullRefreshEnabled(true);
-        recyclerView.setLoadingMoreEnabled(true);
+        mRecyclerView.setPullRefreshEnabled(true);
+        mRecyclerView.setLoadingMoreEnabled(true);
 
-        recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+        mRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
             public void onRefresh() {
                 handler.postDelayed(new Runnable() {
@@ -46,14 +46,14 @@ public class GridLayoutActivity extends AppCompatActivity {
                         dataList.clear();
 
                         if (refreshTime == 1) {
-                            recyclerView.setRefreshError();
+                            mRecyclerView.setRefreshError();
                         } else if (refreshTime == 2) {
-                            recyclerView.setRefreshEmpty();
+                            mRecyclerView.setRefreshEmpty();
                         } else {
                             for (int i = 0; i < 20; i++) {
                                 dataList.add("刷新第" + refreshTime + "次，" + "第" + i + "条数据");
                             }
-                            recyclerView.setRefreshComplete();
+                            mRecyclerView.setRefreshComplete();
                             adapter.notifyDataSetChanged();
                         }
                     }
@@ -68,7 +68,7 @@ public class GridLayoutActivity extends AppCompatActivity {
                         for (int i = 0; i < 10; i++) {
                             dataList.add("这是第" + dataList.size() + "条数据");
                         }
-                        recyclerView.setLoadMoreComplete();
+                        mRecyclerView.setLoadMoreComplete();
                         adapter.notifyDataSetChanged();
                     }
                 }, 1000);
@@ -76,7 +76,7 @@ public class GridLayoutActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerAdapter(this, dataList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setRefreshing(true);
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setRefreshing(true);
     }
 }
