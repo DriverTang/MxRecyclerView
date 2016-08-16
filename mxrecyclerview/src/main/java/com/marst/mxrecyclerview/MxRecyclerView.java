@@ -407,13 +407,15 @@ public class MxRecyclerView extends RecyclerView {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             if (mOnItemClickListener != null) {
-                View childView = findChildViewUnder(e.getX(), e.getY());
-                int position = getChildAdapterPosition(childView);
+                View view = findChildViewUnder(e.getX(), e.getY());
+                int position = getChildAdapterPosition(view);
                 //adapter数据不为空
                 //position大于等于0
                 //childView不为footerView
-                if (!isDataEmpty() && childView != mFootView.getFooterView() && position - 1 >= 0) {
-                    mOnItemClickListener.onItemClick(childView, position - 1);
+                if (!isDataEmpty()
+                        && view != mFootView.getFooterView()
+                        && position - (getRefreshHeaderCount() + getHeaderCount()) >= 0) {
+                    mOnItemClickListener.onItemClick(view, position - (getRefreshHeaderCount() + getHeaderCount()));
                 }
             }
             return true;
@@ -422,13 +424,15 @@ public class MxRecyclerView extends RecyclerView {
         @Override
         public void onLongPress(MotionEvent e) {
             if (mOnItemLongClickListener != null) {
-                View childView = findChildViewUnder(e.getX(), e.getY());
-                int position = getChildAdapterPosition(childView);
+                View view = findChildViewUnder(e.getX(), e.getY());
+                int position = getChildAdapterPosition(view);
                 //adapter数据不为空
                 //position大于等于0
                 //childView不为footerView
-                if (!isDataEmpty() && childView != mFootView.getFooterView() && position - 1 >= 0) {
-                    mOnItemLongClickListener.onItemLongClick(childView, position - 1);
+                if (!isDataEmpty()
+                        && view != mFootView.getFooterView()
+                        && position - (getRefreshHeaderCount() + getHeaderCount()) >= 0) {
+                    mOnItemLongClickListener.onItemLongClick(view, position - (getRefreshHeaderCount() + getHeaderCount()));
                 }
             }
         }

@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.marst.mxrecyclerview.MxRecyclerView;
 import com.marst.recyclerview.R;
@@ -33,10 +34,21 @@ public class HeaderActivity extends AppCompatActivity {
         recyclerView = (MxRecyclerView) findViewById(R.id.recycler_view);
 
         //添加Header
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundColor(Color.RED);
-        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 360));
-        recyclerView.addHeader(imageView);
+        TextView textView = new TextView(this);
+        textView.setBackgroundColor(Color.RED);
+        textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 360));
+        textView.setText("This is a Header");
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(Color.WHITE);
+        recyclerView.addHeader(textView);
+
+        TextView textView1 = new TextView(this);
+        textView1.setBackgroundColor(Color.BLUE);
+        textView1.setGravity(Gravity.CENTER);
+        textView1.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 360));
+        textView1.setText("This is a Header");
+        textView1.setTextColor(Color.WHITE);
+        recyclerView.addHeader(textView1);
 
         recyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
             @Override
