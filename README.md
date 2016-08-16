@@ -1,16 +1,14 @@
-# MxRecyclerView
+# MxRecyclerView #
 
 一个RecyclerView的类库，支持上拉加载，下拉刷新，列表项点击事件监听，添加header，设置无数据和加载失败布局的显示。
 
-## 引入
-<br />
+## 引入 ##
 
 compile 'com.marst:mxrecyclerview:1.0.0'
 
-## 使用
-<br/>
+## 使用 ##
 
-## 添加列表项点击事件
+## 添加列表项点击事件监听 ##
 <pre><code>
         //设置列表项点击事件监听
         recyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
@@ -29,7 +27,22 @@ compile 'com.marst:mxrecyclerview:1.0.0'
 </code></pre>
 
 
-## 下拉刷新 和 上拉加载
+## 下拉刷新 和 加载更多 ##
+
+### 开启和禁止 ###
+
+默认都是开启的，如果不需要此功能可以禁止
+<pre><code>
+        //开启下拉刷新
+        recyclerView.setPullRefreshEnable(true);
+        //禁止下拉刷新
+        recyclerView.setPullRefreshEnable(false);
+        <br/>
+        //开启加载更多
+        recyclerView.setLoadingMoreEnable(true);
+        //禁止加载更多
+        recyclerView.setLoadingMoreEnable(false);
+</code></pre>
 
 你可以对MxRecyclerView的下拉和上拉事件进行监听，代码如下：
 <pre><code>
@@ -77,7 +90,7 @@ compile 'com.marst:mxrecyclerview:1.0.0'
         recyclerView.setLoadingNoMore(true);
 </code></pre>
 
-## 添加Header
+## 添加Header ##
 
 MxRecyclerView可以添加复数个header，代码如下
 <pre><code>
@@ -86,12 +99,10 @@ MxRecyclerView可以添加复数个header，代码如下
          recyclerView.addHeader(headerView3);
 </code></pre>
 
-## 设置空数据 和 加载失败 布局
-
+## 设置空数据 和 加载失败 布局 ##
 有两种方式进行添加：
 
-### 一、在布局中添加属性，引用布局id
-
+### 一、在布局中添加属性，引用布局id ###
 <pre><code>
         &lt;com.marst.mxrecyclerview.MxRecyclerView
                android:id="@+id/recycler_view"
@@ -102,7 +113,7 @@ MxRecyclerView可以添加复数个header，代码如下
 </code></pre>
 
 
-### 二、在代码中进行设置
+### 二、在代码中进行设置 ###
 
 <pre><code>
          //设置空数据View
@@ -111,7 +122,7 @@ MxRecyclerView可以添加复数个header，代码如下
          recyclerView.setErrorView(mErrorView);
 </code></pre>
 
-## 添加分割线
+## 添加分割线 ##
     可以设置分割线颜色，粗细，代码如下
 <pre><code>
         //创建分割线对象，设置方向
@@ -124,96 +135,26 @@ MxRecyclerView可以添加复数个header，代码如下
         recyclerView.addItemDecoration(decoration);
 </code></pre>
 
-## 自定义refresHeader和Footer
+## 自定义refresHeader和Footer ##
 
-   如果要自定义下拉刷新和上拉加载的View，需要实现对应的接口
+如果要完全自定义下拉刷新和上拉加载的View，需要实现对应的接口
 
-   下拉刷新需要实现 BaseLoadingFooter 接口
-
+下拉刷新需要实现 BaseLoadingFooter 接口，
 <pre><code>
-        public interface BaseRefreshHeader {
-
-            int STATE_NORMAL = 0;
-            //释放刷新
-            int STATE_RELEASE_TO_REFRESH = 1;
-            //正在刷新
-            int STATE_REFRESHING = 2;
-            //刷新完成
-            int STATE_COMPLETE = 3;
-            //刷新失败
-            int STATE_ERROE = 4;
-
-            /**
-             * 根据偏移量移动header
-             *
-             * @param delta 偏移量
-             */
-            void onMove(float delta);
-
-            /**
-             * 释放刷新
-             *
-             * @return
-             */
-            boolean releaseAction();
-
-            /**
-             * 获取下拉刷新header的View对象
-             *
-             * @return
-             */
-            View getHeaderView();
-
-            /**
-             * 获取当前的状态
-             *
-             * @return
-             */
-            int getState();
-
-            /**
-             * 设置refreshHeader状态，需实现对各状态的处理
-             *
-             * @param stateCode
-             */
-            void setState(int stateCode);
-        }
+        recyclerView.setFooterView(BaseLoadingFooter footer);
 </code></pre>
 
-   上拉加载需要实现 BaseRefreshHeader 接口：
-
+上拉加载需要实现 BaseRefreshHeader 接口。
 <pre><code>
-     public interface BaseLoadingFooter {
-         //正在加载
-         int STATE_LOADING = 0;
-         //加载完成
-         int STATE_COMPLETE = 1;
-         //没有更多
-         int STATE_NOMORE = 2;
-         //加载失败
-         int STATE_ERROR = 3;
-
-         /**
-          * 获取上拉加载footer的view对象
-          *
-          * @return
-          */
-         View getFooterView();
-
-         /**
-          * 设置footer的状态，按需求实现对各状态的处理
-          *
-          * @param state
-          */
-          void setState(int state);
-     }
+        recyclerView.setRefreshHeader(BaseRefreshHeader refreshHeader);
 </code></pre>
 
+<br/>
+<br/>
+<br/>
 
-## 最后声明，本库是在XRecyclerView的基础上完成的
-
-### 附上XRecyclerView的GitHub地址：
-<a href="https://github.com/jianghejie/XRecyclerView">https://github.com/jianghejie/XRecyclerView</a>
+### Thanks： ###
+### <a href="https://github.com/jianghejie/XRecyclerView">XRecyclerView</a> ###
 
 
 
