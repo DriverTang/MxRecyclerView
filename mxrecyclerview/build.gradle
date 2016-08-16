@@ -28,7 +28,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
 }
 
-version="1.0.0"
+version="1.0.1"
 // 定义两个链接，下面会用到。
 def siteUrl = 'https://github.com/DriverTang/MxRecyclerView'   // 项目的主页
 def gitUrl = 'https://github.com/DriverTang/MxRecyclerView.git'   // Git仓库的url
