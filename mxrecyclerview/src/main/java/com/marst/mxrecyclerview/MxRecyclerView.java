@@ -367,6 +367,17 @@ public class MxRecyclerView extends RecyclerView {
         return max;
     }
 
+    private int findMin(int[] firstPosition) {
+        int min = firstPosition[0];
+        for (int value : firstPosition) {
+            if (value < min) {
+                min = value;
+            }
+        }
+
+        return min;
+    }
+
     /**
      * 判断是滑动是否到顶部
      *
@@ -487,16 +498,7 @@ public class MxRecyclerView extends RecyclerView {
                 && !isLoadingData
                 && loadingMoreEnabled) {
             LayoutManager layoutManager = getLayoutManager();
-            int lastVisibleItemPosition;
-            if (layoutManager instanceof GridLayoutManager) {
-                lastVisibleItemPosition = ((GridLayoutManager) layoutManager).findLastVisibleItemPosition();
-            } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-                int[] into = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
-                ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(into);
-                lastVisibleItemPosition = findMax(into);
-            } else {
-                lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
-            }
+            int lastVisibleItemPosition = getLastVisibleItemPosition();
 
             if (layoutManager.getChildCount() > 0
                     && lastVisibleItemPosition >= layoutManager.getItemCount() - 1
@@ -509,6 +511,47 @@ public class MxRecyclerView extends RecyclerView {
                 mOnLoadingListener.onLoadMore();
             }
         }
+    }
+
+    /**
+     * 获取首个可见item的position
+     * @return
+     */
+    public int getFirstVisibleItemPosition() {
+        LayoutManager layoutManager = getLayoutManager();
+        int firstVisibleItemPosition;
+        if (layoutManager instanceof GridLayoutManager) {
+            firstVisibleItemPosition = ((GridLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            int[] into = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
+            ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(into);
+            firstVisibleItemPosition = findMin(into);
+        } else {
+            firstVisibleItemPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        }
+
+        return firstVisibleItemPosition;
+    }
+
+    /**
+     * 获取最后可见item的position
+     *
+     * @return
+     */
+    public int getLastVisibleItemPosition() {
+        LayoutManager layoutManager = getLayoutManager();
+        int lastVisibleItemPosition;
+        if (layoutManager instanceof GridLayoutManager) {
+            lastVisibleItemPosition = ((GridLayoutManager) layoutManager).findLastVisibleItemPosition();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            int[] into = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
+            ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(into);
+            lastVisibleItemPosition = findMax(into);
+        } else {
+            lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        }
+
+        return lastVisibleItemPosition;
     }
 
     private class DataObserver extends RecyclerView.AdapterDataObserver {

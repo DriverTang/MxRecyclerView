@@ -12,7 +12,7 @@ import com.marst.recyclerview.header.HeaderActivity;
 import com.marst.recyclerview.itemclick.ItemClickActivity;
 import com.marst.recyclerview.linearlayout.LinearLayoutActivity;
 import com.marst.recyclerview.staggered.StaggeredGridActivity;
-import com.marst.recyclerview.swiprefreshlayout.SwipRefreshActivity;
+import com.marst.recyclerview.swiprefresh.SwipRefreshActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gridLayoutBtn = (TextView) findViewById(R.id.grid_btn);
         staggeredLayoutBtn = (TextView) findViewById(R.id.staggered_btn);
         swipRefreshBtn = (TextView) findViewById(R.id.swip_refresh_btn);
-        itemClickBtn = (TextView)findViewById(R.id.item_click_btn);
-        headerBtn = (TextView)findViewById(R.id.header_btn);
-        dividerBtn = (TextView)findViewById(R.id.divider_btn);
+        itemClickBtn = (TextView) findViewById(R.id.item_click_btn);
+        headerBtn = (TextView) findViewById(R.id.header_btn);
+        dividerBtn = (TextView) findViewById(R.id.divider_btn);
 
         linearLayoutBtn.setOnClickListener(this);
         gridLayoutBtn.setOnClickListener(this);

@@ -16,12 +16,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".linearlayout.LinearLayoutActivity" />
-        <activity android:name=".swiprefreshlayout.SwipRefreshActivity" />
         <activity android:name=".gridlayout.GridLayoutActivity" />
         <activity android:name=".staggered.StaggeredGridActivity" />
         <activity android:name=".itemclick.ItemClickActivity" />
         <activity android:name=".header.HeaderActivity" />
-        <activity android:name=".divider.DividerActivity"></activity>
+        <activity android:name=".divider.DividerActivity" />
+        <activity android:name=".swiprefresh.SwipRefreshActivity"></activity>
     </application>
 
 </manifest>

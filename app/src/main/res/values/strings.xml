@@ -3,7 +3,7 @@
     <string name="linear_layout">LinearLayout</string>
     <string name="grid_layout">GridLayout</string>
     <string name="staggered_grid_layout">StaggeredGridLayout</string>
-    <string name="swip_refresh_layout">MxRecyclerView+SwipRefreshLayout</string>
+    <string name="swip_refresh_layout">SwipRefreshRecyclerView</string>
     <string name="item_click">ItemClick</string>
     <string name="header">Header</string>
     <string name="divider">Divider</string>
