@@ -6,7 +6,20 @@
 
 ## 引入 ##
 
+### Gradle： ###
+<pre><code>
 compile 'com.marst:mxrecyclerview:1.0.2'
+</code></pre>
+
+###  Maven： ###
+<pre><code>
+&lt;dependency>
+  &lt;groupId>com.marst&lt;/groupId>
+  &lt;artifactId>mxrecyclerview&lt;/artifactId>
+  &lt;version>1.0.2&lt;/version>
+  &lt;type>pom&lt;/type>
+&lt;/dependency>
+</code></pre>
 
 ## 使用 ##
 
