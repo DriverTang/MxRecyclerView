@@ -129,13 +129,6 @@ SwipRefreshRecyclerView继承自SwipRefreshLayout，用法和MxRecyclerView一�
             mSwipRefreshRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mSwipRefreshRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-            //设置列表项点击监听
-            mSwipRefreshRecyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
-                @Override
-                public void onItemClick(View childView, int position) {
-                    Toast.makeText(SwipRefreshActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
-                }
-            });
             //设置下拉刷新和上拉加载监听
             mSwipRefreshRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
                 @Override
@@ -148,9 +141,6 @@ SwipRefreshRecyclerView继承自SwipRefreshLayout，用法和MxRecyclerView一�
                     mSwipRefreshRecyclerView.setLoadMoreComplete();
                 }
             });
-
-            adapter = new RecyclerAdapter(this, dataList);
-            mSwipRefreshRecyclerView.setAdapter(adapter);
 
             //setRefreshing(true) 会执行OnLoadingListener.onRefresh()方法
             mSwipRefreshRecyclerView.setRefreshing(true);
