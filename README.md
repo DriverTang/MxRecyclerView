@@ -92,7 +92,7 @@ compile 'com.marst:mxrecyclerview:1.0.2'
         mRecyclerView.setLoadingNoMore(true);
 </code></pre>
 
-### 使用SwipRefreshLayout的下拉效果 ###
+## 支持SwipRefreshLayout的下拉效果 ##
 
 SwipRefreshRecyclerView继承自SwipRefreshLayout，用法和MxRecyclerView一致
 
@@ -108,39 +108,39 @@ SwipRefreshRecyclerView继承自SwipRefreshLayout，用法和MxRecyclerView一�
 
 为了保持用法统一，请使用setOnLoadingListener()设置监听，不要使用setOnRefreshListener()
 <pre><code>
-                //
-                mSwipRefreshRecyclerView.setProgressViewOffset(true, 50, 150);
-                mSwipRefreshRecyclerView.setColorSchemeColors(Color.GREEN, Color.YELLOW, Color.RED);
+            //
+            mSwipRefreshRecyclerView.setProgressViewOffset(true, 50, 150);
+            mSwipRefreshRecyclerView.setColorSchemeColors(Color.GREEN, Color.YELLOW, Color.RED);
 
-                //和MxrecyclerViewde使用方法一致
-                mSwipRefreshRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-                mSwipRefreshRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            //和MxrecyclerViewde使用方法一致
+            mSwipRefreshRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            mSwipRefreshRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-                //设置列表项点击监听
-                mSwipRefreshRecyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View childView, int position) {
-                        Toast.makeText(SwipRefreshActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                //设置下拉刷新和上拉加载监听
-                mSwipRefreshRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
-                    @Override
-                    public void onRefresh() {
-                        mSwipRefreshRecyclerView.setRefreshComplete();
-                    }
+            //设置列表项点击监听
+            mSwipRefreshRecyclerView.setOnItemClickListener(new MxRecyclerView.OnItemClickListener() {
+                @Override
+                public void onItemClick(View childView, int position) {
+                    Toast.makeText(SwipRefreshActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
+                }
+            });
+            //设置下拉刷新和上拉加载监听
+            mSwipRefreshRecyclerView.setOnLoadingListener(new MxRecyclerView.OnLoadingListener() {
+                @Override
+                public void onRefresh() {
+                    mSwipRefreshRecyclerView.setRefreshComplete();
+                }
 
-                    @Override
-                    public void onLoadMore() {
-                        mSwipRefreshRecyclerView.setLoadMoreComplete();
-                    }
-                });
+                @Override
+                public void onLoadMore() {
+                    mSwipRefreshRecyclerView.setLoadMoreComplete();
+                }
+            });
 
-                adapter = new RecyclerAdapter(this, dataList);
-                mSwipRefreshRecyclerView.setAdapter(adapter);
+            adapter = new RecyclerAdapter(this, dataList);
+            mSwipRefreshRecyclerView.setAdapter(adapter);
 
-                //setRefreshing(true) 会执行OnLoadingListener.onRefresh()方法
-                mSwipRefreshRecyclerView.setRefreshing(true);
+            //setRefreshing(true) 会执行OnLoadingListener.onRefresh()方法
+            mSwipRefreshRecyclerView.setRefreshing(true);
 </code></pre>
 
 ## 添加Header ##
