@@ -2,11 +2,11 @@
 
 一个RecyclerView的类库，支持上拉加载，下拉刷新，列表项点击事件监听，添加header，设置无数据和加载失败布局的显示,
 
-可以使用SwipRefreshLayout的下拉效果
+支持SwipRefreshLayout的下拉效果
 
 ## 引入 ##
 
-compile 'com.marst:mxrecyclerview:1.0.1'
+compile 'com.marst:mxrecyclerview:1.0.2'
 
 ## 使用 ##
 
@@ -94,7 +94,7 @@ compile 'com.marst:mxrecyclerview:1.0.1'
 
 ### 使用SwipRefreshLayout的下拉效果 ###
 
-SwipRefreshRecyclerView继承自SwipRefreshLayout，但是用法跟MxRecyclerView一致
+SwipRefreshRecyclerView继承自SwipRefreshLayout，用法和MxRecyclerView一致
 
 布局文件如下：
 <pre><code>
@@ -106,7 +106,7 @@ SwipRefreshRecyclerView继承自SwipRefreshLayout，但是用法跟MxRecyclerVie
                    app:layout_error="@layout/layout_error" />
 </code></pre>
 
-为了保持用法统一，请使用setOnLoadingListener()设置下拉刷新和上拉加载监听，不要使用setOnRefreshListener()
+为了保持用法统一，请使用setOnLoadingListener()设置监听，不要使用setOnRefreshListener()
 <pre><code>
                 //
                 mSwipRefreshRecyclerView.setProgressViewOffset(true, 50, 150);
