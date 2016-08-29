@@ -515,6 +515,7 @@ public class MxRecyclerView extends RecyclerView {
 
     /**
      * 获取首个可见item的position
+     *
      * @return
      */
     public int getFirstVisibleItemPosition() {
@@ -723,10 +724,16 @@ public class MxRecyclerView extends RecyclerView {
                 return new SimpleViewHolder(getHeaderViewByType(viewType));
             } else if (viewType == TYPE_FOOTER) {
                 return new SimpleViewHolder(mFootView.getFooterView());
-            } else if (viewType == TYPE_EMPTY && mEmptyView != null) {
-                return new SimpleViewHolder(mEmptyView);
-            } else if (viewType == TYPE_ERROR && mErrorView != null) {
-                return new SimpleViewHolder(mErrorView);
+            } else if (viewType == TYPE_EMPTY) {
+                if (mEmptyView != null) {
+                    return new SimpleViewHolder(mEmptyView);
+                }
+                return null;
+            } else if (viewType == TYPE_ERROR) {
+                if (mErrorView != null) {
+                    return new SimpleViewHolder(mErrorView);
+                }
+                return null;
             }
 
             return adapter.onCreateViewHolder(parent, viewType);
