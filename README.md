@@ -8,7 +8,7 @@
 
 ### Gradle： ###
 <pre><code>
-compile 'com.marst:mxrecyclerview:1.0.2'
+compile 'com.marst:mxrecyclerview:1.0.3'
 </code></pre>
 
 ###  Maven： ###
