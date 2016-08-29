@@ -32,40 +32,42 @@ public class MxRecyclerView extends RecyclerView {
     //布局类型
     private static final int TYPE_REFRESH_HEADER = 10000;
     private static final int TYPE_FOOTER = 10001;
-    private static final int TYPE_EMPTY = 10002;
-    private static final int TYPE_ERROR = 10003;
+    private static final int TYPE_INIT = 10002;
+    private static final int TYPE_EMPTY = 10003;
+    private static final int TYPE_ERROR = 10004;
+
     //头布局类型基数，
-    private static final int HEADER_INIT_INDEX = 10004;
+    private static final int HEADER_INIT_INDEX = 10005;
 
     private static final float DRAG_RATE = 2;
-
     //刷新失败
     private static final int DATA_ERROR = -1;
     //刷新返回数据为空
     private static final int DATA_EMPTY = 0;
+
     //初始化
     private static final int DATA_INIT = 1;
 
     private Context mContext;
-
     private BaseRefreshHeader mRefreshHeader;
+
     private BaseLoadingFooter mFootView;
-
     private boolean pullRefreshEnabled = true;
-    private boolean loadingMoreEnabled = true;
 
+    private boolean loadingMoreEnabled = true;
     private boolean isLoadingData = false;
+
     private boolean isLoadingNoMore = false;
 
     //默认初始化数据类型，不显示任何布局
     private int dataState = DATA_INIT;
-
     //空数据布局id
     private int mEmptyViewId;
+
     //加载失败布局id
     private int mErrorViewId;
-
     private View mEmptyView;
+
     private View mErrorView;
 
     private SparseArray<View> mHeaderViews = new SparseArray<>();
@@ -73,10 +75,9 @@ public class MxRecyclerView extends RecyclerView {
     private WrapAdapter mWrapAdapter;
 
     private final RecyclerView.AdapterDataObserver mDataObserver = new DataObserver();
-
     private OnItemClickListener mOnItemClickListener;
-    private OnItemLongClickListener mOnItemLongClickListener;
 
+    private OnItemLongClickListener mOnItemLongClickListener;
     private OnLoadingListener mOnLoadingListener;
     private float mLastY = -1;
 
@@ -685,12 +686,14 @@ public class MxRecyclerView extends RecyclerView {
                         mErrorView.setVisibility(View.VISIBLE);
                     }
                     return TYPE_ERROR;
+                } else {
+                    return TYPE_INIT;
                 }
             }
 
             if (adapter != null) {
                 int adapterCount = adapter.getItemCount();
-                if (adapterPosition < adapterCount) {
+                if (adapterCount > 0 && adapterPosition < adapterCount) {
                     if (mEmptyView != null && mEmptyView.getVisibility() == View.VISIBLE) {
                         mEmptyView.setVisibility(View.GONE);
                     }
@@ -718,22 +721,23 @@ public class MxRecyclerView extends RecyclerView {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = null;
             if (viewType == TYPE_REFRESH_HEADER) {
-                return new SimpleViewHolder(mRefreshHeader.getHeaderView());
+                view = mRefreshHeader.getHeaderView();
             } else if (isHeaderType(viewType)) {
-                return new SimpleViewHolder(getHeaderViewByType(viewType));
+                view = getHeaderViewByType(viewType);
             } else if (viewType == TYPE_FOOTER) {
-                return new SimpleViewHolder(mFootView.getFooterView());
+                view = mFootView.getFooterView();
             } else if (viewType == TYPE_EMPTY) {
-                if (mEmptyView != null) {
-                    return new SimpleViewHolder(mEmptyView);
-                }
-                return null;
+                view = mEmptyView == null ? new View(mContext) : mEmptyView;
             } else if (viewType == TYPE_ERROR) {
-                if (mErrorView != null) {
-                    return new SimpleViewHolder(mErrorView);
-                }
-                return null;
+                view = mErrorView == null ? new View(mContext) : mErrorView;
+            } else if (viewType == TYPE_INIT) {
+                view = new View(mContext);
+            }
+
+            if (view != null) {
+                return new SimpleViewHolder(view);
             }
 
             return adapter.onCreateViewHolder(parent, viewType);
