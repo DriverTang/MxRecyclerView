@@ -181,6 +181,15 @@ public class MxRecyclerView extends RecyclerView {
         mDataObserver.onChanged();
     }
 
+    public void setEmptyView(int mEmptyViewId) {
+        if (mEmptyViewId == 0) {
+            throw new IllegalArgumentException("This layout ID was error!");
+        }
+        this.mEmptyView = LayoutInflater.from(mContext).inflate(mEmptyViewId, null);
+        this.mEmptyView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mDataObserver.onChanged();
+    }
+
     /**
      * 获取空数据显示的View
      *
@@ -197,6 +206,15 @@ public class MxRecyclerView extends RecyclerView {
      */
     public void setErrorView(View errorView) {
         this.mErrorView = errorView;
+    }
+
+    public void setErrorView(int mErrorViewId) {
+        if (mErrorViewId == 0) {
+            throw new IllegalArgumentException("This layout ID was error!");
+        }
+        this.mErrorView = LayoutInflater.from(mContext).inflate(mErrorViewId, null);
+        this.mErrorView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mDataObserver.onChanged();
     }
 
     /**

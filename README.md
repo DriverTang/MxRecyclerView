@@ -8,7 +8,7 @@
 
 ### Gradle： ###
 <pre><code>
-compile 'com.marst:mxrecyclerview:1.0.4'
+compile 'com.marst:mxrecyclerview:1.0.5'
 </code></pre>
 
 ###  Maven： ###
@@ -16,7 +16,7 @@ compile 'com.marst:mxrecyclerview:1.0.4'
 &lt;dependency>
   &lt;groupId>com.marst&lt;/groupId>
   &lt;artifactId>mxrecyclerview&lt;/artifactId>
-  &lt;version>1.0.4&lt;/version>
+  &lt;version>1.0.5&lt;/version>
   &lt;type>pom&lt;/type>
 &lt;/dependency>
 </code></pre>

@@ -71,8 +71,16 @@ public class SwipRefreshRecyclerView extends SwipeRefreshLayout {
         mRecyclerView.setEmptyView(emptyView);
     }
 
+    public void setEmptyView(int mEmptyViewId) {
+        mRecyclerView.setEmptyView(mEmptyViewId);
+    }
+
     public void setErrorView(View errorView) {
         mRecyclerView.setErrorView(errorView);
+    }
+
+    public void setErrorView(int mEmptyViewId) {
+        mRecyclerView.setErrorView(mEmptyViewId);
     }
 
     public void setFooterView(BaseLoadingFooter footerView) {
@@ -111,6 +119,10 @@ public class SwipRefreshRecyclerView extends SwipeRefreshLayout {
 
     public void setOnItemLongClickListener(MxRecyclerView.OnItemLongClickListener listener) {
         mRecyclerView.setOnItemLongClickListener(listener);
+    }
+
+    public void addOnScrollListener(RecyclerView.OnScrollListener listener) {
+        mRecyclerView.addOnScrollListener(listener);
     }
 
     @Override
